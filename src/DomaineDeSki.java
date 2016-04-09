@@ -6,8 +6,7 @@ public class DomaineDeSki {
 	private ArrayList<Chemin> pistes;
 	
 	public DomaineDeSki(){
-		this.pistes = new ArrayList<Chemin>();
-		
+		this.pistes = new ArrayList<Chemin>();	
 	}
 	
 	public int getNombredePiste(){
@@ -32,7 +31,7 @@ public class DomaineDeSki {
 	}
 	
 	private void _CreationPisteFromString(String in){
-		String nom = ""; String depart = ""; String arriver = ""; int taille = 0;
+		String nom = ""; String depart = ""; String arriver = ""; String StrTaille = ""; int taille = 0;
 		int tres = 0;
 		for(int i = 0; i<in.length(); i++){
 			if(tres == 0){
@@ -60,9 +59,15 @@ public class DomaineDeSki {
 				}
 			}
 			else if(tres == 3){
-				
+				if(in.charAt(i) != ' '){
+					StrTaille += in.charAt(i);
+				}
+				else{
+					tres++;
+				}
 			}
 		}
+		taille = Integer.parseInt(StrTaille);
 		this.pistes.add(new Chemin(nom, depart, arriver, taille));
 	}
 	
