@@ -32,7 +32,46 @@ public class DomaineDeSki {
 	}
 	
 	private void _CreationPisteFromString(String in){
-		System.out.println(in);
+		String nom = ""; String depart = ""; String arriver = ""; int taille = 0;
+		int tres = 0;
+		for(int i = 0; i<in.length(); i++){
+			if(tres == 0){
+				if(in.charAt(i) != ' '){
+					nom += in.charAt(i);				
+				}
+				else{
+					tres++;
+				}
+			}
+			else if(tres == 1){
+				if(in.charAt(i) != ' '){
+					depart += in.charAt(i);				
+				}
+				else{
+					tres++;
+				}
+			}
+			else if(tres == 2){
+				if(in.charAt(i) != ' '){
+					arriver += in.charAt(i);				
+				}
+				else{
+					tres++;
+				}
+			}
+			else if(tres == 3){
+				
+			}
+		}
+		this.pistes.add(new Chemin(nom, depart, arriver, taille));
 	}
-
+	
+	public String toString(){
+		String str = "";
+		for(int i = 0; i<this.pistes.size(); i++){
+			str+= this.pistes.get(i).toString()+"\n";
+		}
+		 
+		return str;
+	}
 }
