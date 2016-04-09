@@ -1,0 +1,15 @@
+{{ "depart":"Signal",
+"arrivee":"Villard Reculas",
+"taille":"38"
+},
+{"depart":"Signal",
+"arrivee":"Villard Reculas",
+"taille":60},
+{"depart":"Signal",
+"arrivee":"Barbarate",
+"taille":82
+},
+{"depart":"Villard Reculas",
+"arrivee":"Barbarate",
+"taille":16
+}}
