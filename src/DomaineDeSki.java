@@ -103,9 +103,9 @@ public class DomaineDeSki {
 	
 	public String afficherSommets(){
 		String str = "";
-		
+		str+="----------------------\n";
 		for(Sommet s : sommets){
-			s.getNom();
+			str+= s.getNom()+"\n----------------------\n";
 		}
 		
 		return str;
