@@ -3,15 +3,22 @@ import java.util.ArrayList;
 
 
 public class DomaineDeSki {
-	private ArrayList<Chemin> pistes;
+	private ArrayList<Sommet> sommets;
 	
 	public DomaineDeSki(){
-		this.pistes = new ArrayList<Chemin>();	
+		this.sommets = new ArrayList<Sommet>();	
 	}
 	
-	public int getNombredePiste(){
-		return this.pistes.size();
+	public int getNombredeSommets(){
+		return this.sommets.size();
 	}
+	
+	public String plusCourtChemin_Djikstra(String depart, String arriver){
+		String plusCourtChemin = "";
+		
+		return plusCourtChemin;
+	}
+	
 	
 	public void chargerDonnees(String nomFile){
 		try{
@@ -68,15 +75,39 @@ public class DomaineDeSki {
 			}
 		}
 		taille = Integer.parseInt(StrTaille);
-		this.pistes.add(new Chemin(nom, depart, arriver, taille));
+		sommetsExistant(new Chemin(nom, depart, arriver, taille));
+//		this.pistes.add(new Chemin(nom, depart, arriver, taille));
+	}
+	
+	public void sommetsExistant(Chemin aLinker){
+		int existe = 0;
+		for(Sommet s : sommets){
+			if(s.getNom().equals(aLinker.getDepart())){
+				s.ajouterAretesSortantes(aLinker);
+				existe = 1;
+			}
+		}
+		if(existe == 0){
+			sommets.add(new Sommet(aLinker.getDepart(), aLinker));
+		}
 	}
 	
 	public String toString(){
 		String str = "";
-		for(int i = 0; i<this.pistes.size(); i++){
-			str+= this.pistes.get(i).toString()+"\n";
+		for(int i = 0; i<this.getNombredeSommets(); i++){
+			str+= this.sommets.get(i).toString()+"\n";
 		}
 		 
+		return str;
+	}
+	
+	public String afficherSommets(){
+		String str = "";
+		
+		for(Sommet s : sommets){
+			s.getNom();
+		}
+		
 		return str;
 	}
 }

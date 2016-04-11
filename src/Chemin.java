@@ -20,4 +20,20 @@ public class Chemin {
 		str += this.taille;
 		return str;
 	}
+
+	public String getDepart() {
+		return this.depart;
+	}
+	
+	public String getArriver(){
+		return this.arriver;
+	}
+	
+	public int getTaille(){
+		return this.taille;
+	}
+	
+	public String getNom(){
+		return this.nom;
+	}
 }
