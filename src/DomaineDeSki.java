@@ -15,7 +15,23 @@ public class DomaineDeSki {
 	
 	public String plusCourtChemin_Djikstra(String depart, String arriver){
 		String plusCourtChemin = "";
-		
+		int d[] = new int[this.sommets.size()];
+		//TODO: Il faudrait un tableau pour stocké le père du sommet
+		boolean existe = false;
+		for(Sommet s : sommets){
+			if(s.getNom().equals(depart)){
+				existe = true;
+			}
+		}
+		if(existe){
+			for(int i = 0; i<this.sommets.size(); i++){
+				d[i] = -1;
+				//TODO: Il faut mettre le père à null ici
+			}
+		}
+		else{
+			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");
+		}
 		return plusCourtChemin;
 	}
 	

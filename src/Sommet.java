@@ -31,7 +31,7 @@ public class Sommet {
 	
 	public String toString(){
 		String str = "";
-		str += this.getNom()+" ";
+		str += "Nom du sommet : " +this.getNom()+" | ";
 		for(int i = 0; i<this.sorties.size(); i++){
 			str+= this.sorties.get(i).toString();
 		}
