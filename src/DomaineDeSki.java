@@ -5,29 +5,46 @@ import java.util.ArrayList;
 public class DomaineDeSki {
 	private ArrayList<Sommet> sommets;
 	
+	//Constructeur.
 	public DomaineDeSki(){
 		this.sommets = new ArrayList<Sommet>();	
 	}
 	
 	public int getNombredeSommets(){
+		//Renvoie le nombre de sommet que contient le graphe.
 		return this.sommets.size();
+	}
+	
+	private boolean sommetExiste(String d){
+		//Renvoie true si le sommet d existe dans le graphe et false sinon.
+		for(Sommet s : sommets){
+			if(s.getNom().equals(d)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public String plusCourtChemin_Djikstra(String depart, String arriver){
 		String plusCourtChemin = "";
+		ArrayList<String> V = new ArrayList<String>();
 		int d[] = new int[this.sommets.size()];
-		//TODO: Il faudrait un tableau pour stocké le père du sommet
-		boolean existe = false;
-		for(Sommet s : sommets){
-			if(s.getNom().equals(depart)){
-				existe = true;
-			}
-		}
-		if(existe){
-			for(int i = 0; i<this.sommets.size(); i++){
+		String pere[] = new String[this.sommets.size()];
+
+		if(sommetExiste(depart)){//Je vérifie que le sommet duquel on veux commencer la recherche existe.
+			V.add(depart);//Je met dans la pile le sommet de départ.
+			for(int i = 0; i<this.sommets.size(); i++){//Dans cette boucle, j'initialise les sommets pour qu'ils soient tous considérés comme non traités. 
 				d[i] = -1;
-				//TODO: Il faut mettre le père à null ici
+				pere[i] = "";
+				System.out.println(sommets.get(i).getNom() +" "+ d[i] +" "+ pere[i]);
 			}
+			//J'initialise le sommet de départ avec son temps à 0 et en ayant pas de père.
+			for(int i = 0; i<this.sommets.size(); i++){
+				if(sommets.get(i).getNom().equals(depart)){
+					d[i] = 0;
+					pere[i] = "null";
+				}
+			}			
 		}
 		else{
 			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");
@@ -41,9 +58,9 @@ public class DomaineDeSki {
 			BufferedReader read = new BufferedReader(new FileReader(nomFile));
 			String in = read.readLine();
 			while(in != null){
-				_CreationPisteFromString(in);
-				in = read.readLine();
-			}
+				_CreationPisteFromString(in);//Je lis la DB ligne par ligne et ensuite en appelant
+				in = read.readLine();//_CreationPisteFromString() j'ajoute les sommets non connu et connecte
+			}						//les pistes au sommets déjà connus.
 			read.close();
 			
 		}
@@ -54,6 +71,9 @@ public class DomaineDeSki {
 	}
 	
 	private void _CreationPisteFromString(String in){
+		//Je traite ici la chaine de caractères obtenue en entrée pour en extraire les informations nécessaires
+		//à la création des pistes et sommets du graphe.
+		//TODO: Apprendre à lire le type depuis la DB c'est comme "nom type depart arriver taille"
 		String nom = ""; String depart = ""; String arriver = ""; String StrTaille = ""; int taille = 0;
 		int tres = 0;
 		for(int i = 0; i<in.length(); i++){
@@ -91,24 +111,38 @@ public class DomaineDeSki {
 			}
 		}
 		taille = Integer.parseInt(StrTaille);
-		sommetsExistant(new Chemin(nom, depart, arriver, taille));
+		linkCheminASommet(new Chemin(nom, depart, arriver, taille));
+		
 //		this.pistes.add(new Chemin(nom, depart, arriver, taille));
 	}
 	
-	public void sommetsExistant(Chemin aLinker){
-		int existe = 0;
+	public void linkCheminASommet(Chemin aLinker){
+		//C'est la fonction qui s'occupe de donner les pistes(Chemin ou arrêtes) aux sommets et si
+		//le sommet n'existe pas de le créer.
+		boolean existe = false;
 		for(Sommet s : sommets){
 			if(s.getNom().equals(aLinker.getDepart())){
 				s.ajouterAretesSortantes(aLinker);
-				existe = 1;
+				existe = true;
 			}
 		}
-		if(existe == 0){
+		if(!existe){
 			sommets.add(new Sommet(aLinker.getDepart(), aLinker));
+		}
+		
+		existe = false;
+		for(Sommet s : sommets){
+			if(s.getNom().equals(aLinker.getArriver())){
+				existe = true;
+			}
+		}
+		if(!existe){
+			sommets.add(new Sommet(aLinker.getArriver()));
 		}
 	}
 	
 	public String toString(){
+		//Fonction qui renvoie les Sommets qui compose ce graphe.
 		String str = "";
 		for(int i = 0; i<this.getNombredeSommets(); i++){
 			str+= this.sommets.get(i).toString()+"\n";
@@ -118,6 +152,7 @@ public class DomaineDeSki {
 	}
 	
 	public String afficherSommets(){
+		//Fonction à part de toString() qui ne renvoie que les nom des sommets du graphe.
 		String str = "";
 		str+="----------------------\n";
 		for(Sommet s : sommets){
