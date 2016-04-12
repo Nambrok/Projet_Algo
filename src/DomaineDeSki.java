@@ -66,24 +66,38 @@ public class DomaineDeSki {
 				}
 				System.out.println("Sortie");
 			}
-			//TODO: Faire Djikstra sur le graphe. 
-			while(aTraiter.size()>0){
 			
-//				Sommet s = plusPetit(d, sommets);
-				//Sommet s = plutPetitDistance des sommets non traité.
-				
+			while(aTraiter.size()>0){
+				int addSommet = _plusPetitNonTraiter(aTraiter, d, id);
+				Sommet s = sommets.get(addSommet);
+				for(Chemin c : s.getSortants()){
+					for(int i = 0; i<this.sommets.size(); i++){
+						if(sommets.get(i).getNom().equals(c.getArriver())){
+							if(d[i]>c.getTaille()+d[addSommet]){
+								d[i] = c.getTaille()+d[addSommet];
+								pere[i] = s.getNom();
+							}
+						}
+					}
+				}
+				marquer.add(s.getNom());
+				aTraiter.remove(s.getNom());
+				System.out.println(s.getNom());
 			}
-//				for(Chemin c : s.getSortantes()){
-//					for(int i = 0; i<sommets.size(); i++){
-//						if(sommets.get(i).getNom().equals(c.getArriver())){
-//							if(d[i]>c.getTaille+d[s]){
-//								d[i] = c.getTaille()+d[s];
-//								pere[i] = s.getNom();
-//							}
-//						}
-//					}
-//				}
-//			}			
+			
+			int iArr = 0;
+			for(int i = 0; i<this.sommets.size(); i++){
+				if(id[i].equals(arriver)){
+					iArr = i;
+				}
+			}
+//			int target = iArr;
+//			while(!(pere[target].equals("null"))){
+//				plusCourtChemin += id[target]+" ";
+//				target = pere[target];
+//			}
+			
+			
 		}
 		else{
 			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");
@@ -91,7 +105,20 @@ public class DomaineDeSki {
 		return plusCourtChemin;
 	}
 	
-	
+	private int _plusPetitNonTraiter(ArrayList<String> aTraiter, int d[], String id[]){
+		int min = 100000000, minAdd = 0;
+		for(int i = 0; i<this.sommets.size(); i++){
+			for(String s : aTraiter){
+				if(s.equals(id[i])){
+					if(min > d[i]){
+						min = d[i];
+						minAdd = i;
+					}
+				}
+			}
+		}
+		return minAdd;
+	}
 	public void chargerDonnees(String nomFile){
 		try{
 			BufferedReader read = new BufferedReader(new FileReader(nomFile));
