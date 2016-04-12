@@ -30,7 +30,7 @@ public class Chemin {
 		str += this.nom +" ";
 		str += this.depart;
 		str += "-->"+this.arriver+" ";
-		str += "Taille : "+this.taille+" | ";
+		str += "Temps : "+this.taille+" ";
 		return str;
 	}
 	

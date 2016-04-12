@@ -27,16 +27,29 @@ public class DomaineDeSki {
 	
 	public String plusCourtChemin_Djikstra(String depart, String arriver){
 		String plusCourtChemin = "";
-		ArrayList<String> V = new ArrayList<String>();
+		
+		ArrayList<String> marquer = new ArrayList<String>();
+		ArrayList<String> aTraiter = new ArrayList<String>();
+		for(Sommet s : sommets){
+			aTraiter.add(s.getNom());
+		}
+		aTraiter.remove(depart);
+		
 		int d[] = new int[this.sommets.size()];
 		String pere[] = new String[this.sommets.size()];
+		String id[] = new String[this.sommets.size()];
+		
+		for(int i = 0; i<this.sommets.size(); i++){
+			id[i] = this.sommets.get(i).getNom();
+		}
+		
 
 		if(sommetExiste(depart)){//Je vérifie que le sommet duquel on veux commencer la recherche existe.
-			V.add(depart);//Je met dans la pile le sommet de départ.
+			marquer.add(depart);//Je met dans la pile le sommet de départ.
 			for(int i = 0; i<this.sommets.size(); i++){//Dans cette boucle, j'initialise les sommets pour qu'ils soient tous considérés comme non traités. 
 				d[i] = -1;
 				pere[i] = "";
-				System.out.println(sommets.get(i).getNom() +" "+ d[i] +" "+ pere[i]);
+				
 			}
 			//J'initialise le sommet de départ avec son temps à 0 et en ayant pas de père.
 			for(int i = 0; i<this.sommets.size(); i++){
@@ -44,7 +57,33 @@ public class DomaineDeSki {
 					d[i] = 0;
 					pere[i] = "null";
 				}
-			}			
+			}
+			//Affichage de tout les sommmets suivis de leur arrêtes sortantes.
+			for(Sommet s : sommets){
+				System.out.println("Début : "+ s.getNom());
+				for(Chemin c : s.getSortants()){
+					System.out.println("\t"+c.toString());
+				}
+				System.out.println("Sortie");
+			}
+			//TODO: Faire Djikstra sur le graphe. 
+			while(aTraiter.size()>0){
+			
+//				Sommet s = plusPetit(d, sommets);
+				//Sommet s = plutPetitDistance des sommets non traité.
+				
+			}
+//				for(Chemin c : s.getSortantes()){
+//					for(int i = 0; i<sommets.size(); i++){
+//						if(sommets.get(i).getNom().equals(c.getArriver())){
+//							if(d[i]>c.getTaille+d[s]){
+//								d[i] = c.getTaille()+d[s];
+//								pere[i] = s.getNom();
+//							}
+//						}
+//					}
+//				}
+//			}			
 		}
 		else{
 			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");

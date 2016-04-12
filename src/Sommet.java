@@ -28,17 +28,21 @@ public class Sommet {
 		}
 	}
 	
+	public ArrayList<Chemin> getSortants(){
+		return this.sorties;
+	}
+	
 	public String getNom(){
 		return this.nom;
 	}
 	
 	public String toString(){
 		String str = "";
-		str += "Nom du sommet : " +this.getNom()+" | ";
+		str += "Nom du sommet : " +this.getNom()+" ";
 		for(int i = 0; i<this.sorties.size(); i++){
 			str+= this.sorties.get(i).toString();
 		}
 		return str;
 	}
-	
+		
 }
