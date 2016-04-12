@@ -91,6 +91,8 @@ public class DomaineDeSki {
 					iArr = i;
 				}
 			}
+			
+			//TODO: Ecrire tout le chemin le plus court en remontant depuis le sommet d'arrivée.
 //			int target = iArr;
 //			while(!(pere[target].equals("null"))){
 //				plusCourtChemin += id[target]+" ";
