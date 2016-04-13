@@ -93,6 +93,9 @@ public class DomaineDeSki {
 				}
 				marquer.add(s.getNom());
 				aTraiter.remove(s.getNom());
+//				for(int i = 0; i<this.sommets.size(); i++){
+//					System.out.println("id : "+ id[i]+ " Pere : "+pere[i]+" Distance : "+d[i]);
+//				}ça marche pas, il ne fait pas les calculs comme il faut.
 			}
 						
 			//TODO: Ecrire tout le chemin le plus court en remontant depuis le sommet d'arrivée.
@@ -104,6 +107,7 @@ public class DomaineDeSki {
 //				target = pere[target];
 //			}
 		}
+		
 		else{
 			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");
 		}
