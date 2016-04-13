@@ -4,11 +4,13 @@ import java.util.ArrayList;
 public class Sommet {
 	private String nom; //Nom du sommet.
 	private ArrayList<Chemin> sorties; //Liste de toutes les arrêtes sortant de ce sommet.
+	private int emplacementDansTableauDjikstra;
 	
 	//Constructeur
 	public Sommet(String nom){
 		this.nom = nom;
 		this.sorties = new ArrayList<Chemin>();
+		this.emplacementDansTableauDjikstra = 0;
 	}
 	
 	//Constructeur qui ajoute directement une arrêtes au sommet dés sa création.
@@ -26,6 +28,14 @@ public class Sommet {
 		else{
 			System.out.println("Erreur : Chemin non ajoutée car il ne commence pas de ce sommet.");
 		}
+	}
+	
+	public void setEmplacementTableau(int add){
+		this.emplacementDansTableauDjikstra = add;
+	}
+	
+	public int getEmplacementTableau(){
+		return this.emplacementDansTableauDjikstra;
 	}
 	
 	public ArrayList<Chemin> getSortants(){
