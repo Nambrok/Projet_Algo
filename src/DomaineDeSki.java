@@ -6,6 +6,7 @@ public class DomaineDeSki {
 	private ArrayList<Sommet> sommets;
 	private Sommet debut;
 	private Sommet arriver;
+	
 	//Constructeur.
 	public DomaineDeSki(){
 		this.sommets = new ArrayList<Sommet>();
@@ -39,6 +40,7 @@ public class DomaineDeSki {
 //			}
 //			System.out.println();
 //		}
+		
 		//Si le sommet de départ et le sommet d'arriver existe, on peut continuer.
 		if(sommetExiste(depart) && sommetExiste(arriver)){
 			//On initialise les sommets. Si le sommet est le début, on met sa distance à 0 et son pere à null.
@@ -63,15 +65,12 @@ public class DomaineDeSki {
 				s.setTraiterFalse();
 			}
 			
-//			System.out.println("Sommet de départ initialisés.");
-			
 			while(!(_isTraitementTerminer(aTraiter))){//Tant que pas tout les sommets ont été traité on continue de tourner
 				//TODO: Warning: Si pas tous les sommets du graphe sont accessible alors on tournera dans le vide car on ne pourra pas atteindre certains des sommets mais on vérifie quand même si ceux ci sont traités. Ne devrait pas poser de problèmes dans notre graphe. A gerer si le temps est disponible. 
 				Sommet enTraitement = _plusPetitNonTraiter(aTraiter);
 				//On choisit le sommet qui a la plus petite distance et qui est disponible pour le traitement, c'est-à-dire qu'on la déjà rencontrer.
 				//Première exécution il n'y a que le sommet de départ, donc enTraitement est this.debut, le sommet de départ.
 				if(enTraitement != null){ //Si on a pas fini des les traiter, c'est à dire que _plusPetitNonTraiter ne renvoie pas null.
-//					System.out.println("En traitement : " +enTraitement.getNom());
 					for(Chemin c : enTraitement.getSortants()){
 						//On regarde toutes les arêtes partant du sommet enTraitement
 						for(Sommet s : sommets){
@@ -95,7 +94,6 @@ public class DomaineDeSki {
 					aTraiter.remove(enTraitement);
 					//Et on l'enlève de la liste des sommets qu'il reste à traiter.
 				}
-				
 			}
 			
 			//Remonte la chaine de sommet depuis l'arriver vers le debut.
@@ -115,16 +113,17 @@ public class DomaineDeSki {
 	}
 		
 	private boolean _isTraitementTerminer(ArrayList<Sommet> aTraiter) {
+		//Vérifie si les sommets de aTraiter sont traités.
 		for(Sommet s : aTraiter){
 			if(!(s.isTraiter())){
-				return false;
+				return false; //Si on tombe sur un sommet qui n'est pas traités on renvoie false, sinon on renvoie true.
 			}
 		}
 		return true;
 	}
 
 	private Sommet _plusPetitNonTraiter(ArrayList<Sommet> aTraiter){
-		Sommet min = null;
+		Sommet min = null; //Cherche et renvoie le sommet dans aTraiter ayant la plus petite distance et donc celui qu'il faudra traiter le prochain.
 		if(aTraiter.size() == 0){
 			return null;
 		}
@@ -133,15 +132,11 @@ public class DomaineDeSki {
 				min = s;
 			}
 		}
-		if(min == null){
-			return null;
-		}
 		for(Sommet s : aTraiter){
 			if(s.getDistance() < min.getDistance()){
 				min = s;
 			}
 		}
-		
 		return min;
 	}
 	public void chargerDonnees(String nomFile){
