@@ -4,13 +4,17 @@ import java.util.ArrayList;
 public class Sommet {
 	private String nom; //Nom du sommet.
 	private ArrayList<Chemin> sorties; //Liste de toutes les arrêtes sortant de ce sommet.
-	private int emplacementDansTableauDjikstra;
+	private int distance;
+	private boolean traiter;
+	private Sommet pere;
 	
 	//Constructeur
 	public Sommet(String nom){
 		this.nom = nom;
 		this.sorties = new ArrayList<Chemin>();
-		this.emplacementDansTableauDjikstra = 0;
+		this.setDistance(1000000000);
+		this.traiter = false;
+		this.setPere(null);
 	}
 	
 	//Constructeur qui ajoute directement une arrêtes au sommet dés sa création.
@@ -18,6 +22,9 @@ public class Sommet {
 		this.nom = nom;
 		this.sorties = new ArrayList<Chemin>();
 		this.sorties.add(first);
+		this.setDistance(1000000000);
+		this.traiter = false;
+		this.setPere(null);
 	}
 	
 	//Ajoute une arrête sortante à ce sommet.
@@ -30,12 +37,20 @@ public class Sommet {
 		}
 	}
 	
-	public void setEmplacementTableau(int add){
-		this.emplacementDansTableauDjikstra = add;
+	public void setDistance(int d){
+		this.distance = d;
 	}
 	
-	public int getEmplacementTableau(){
-		return this.emplacementDansTableauDjikstra;
+	public int getDistance(){
+		return this.distance;
+	}
+	
+	public boolean isTraiter(){
+		return this.traiter;
+	}
+	
+	public void setTraiter(){
+		this.traiter = true;
 	}
 	
 	public ArrayList<Chemin> getSortants(){
@@ -53,6 +68,14 @@ public class Sommet {
 			str+= this.sorties.get(i).toString();
 		}
 		return str;
+	}
+
+	public Sommet getPere() {
+		return pere;
+	}
+
+	public void setPere(Sommet pere) {
+		this.pere = pere;
 	}
 		
 }
