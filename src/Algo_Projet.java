@@ -12,20 +12,18 @@ public class Algo_Projet {
 		huez.chargerDonnees("BD/BD.txt");
 		String depart; String arriver;
 		Scanner in = new Scanner(System.in);
-//		System.out.print(huez.toString());
-//		System.out.println(huez.getNombredeSommets());
 		
-//		System.out.println(huez.afficherSommets());
-//		System.out.print("Entrer le point de départ : ");
-//		depart = in.nextLine();
-//		System.out.print("Entrer le point d'arriver : ");
-//		arriver = in.nextLine();
-//		System.out.println(huez.plusCourtChemin_Djikstra(depart, arriver));
+		System.out.println(huez.afficherSommets());
+		System.out.print("Entrer le point de départ : ");
+		depart = in.nextLine();
+		System.out.print("Entrer le point d'arriver : ");
+		arriver = in.nextLine();
+		System.out.println(huez.plusCourtChemin_Djikstra(depart, arriver));
 		
-		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Barbarate"));
-		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Villard_Reculas"));
-		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Signal"));
-		System.out.println(huez.plusCourtChemin_Djikstra("Villard_Reculas", "Barbarate"));
+//		System.out.println(huez.plusCourtChemin_Djikstra("Barbarate", "Barbarate"));
+//		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Villard_Reculas"));
+//		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Signal"));
+//		System.out.println(huez.plusCourtChemin_Djikstra("Villard_Reculas", "Barbarate"));
 	}
 
 }
