@@ -10,7 +10,8 @@ public class Algo_Projet {
 		//System.out.print(huez.toString());
 //		System.out.println(huez.getNombredeSommets());
 //		System.out.println(huez.afficherSommets());
-		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Villard_Reculas"));
+		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Barbarate"));
+		System.out.print("Fin");
 
 	}
 

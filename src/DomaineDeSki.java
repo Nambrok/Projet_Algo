@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class DomaineDeSki {
 	private ArrayList<Sommet> sommets;
-	private int addDebut;
-	private int addArriver;
+	private Sommet debut;
+	private Sommet arriver;
 	//Constructeur.
 	public DomaineDeSki(){
 		this.sommets = new ArrayList<Sommet>();
-		this.addDebut = 0;
-		this.addArriver = 0;
+		this.debut = null;
+		this.arriver = null;
 	}
 	
 	public int getNombredeSommets(){
@@ -30,14 +30,15 @@ public class DomaineDeSki {
 	
 	public String plusCourtChemin_Djikstra(String depart, String arriver){
 		ArrayList<Sommet> aTraiter = new ArrayList<Sommet>();
+		String plusCourtChemin = "";
 		//Affichage de test Affiche les sommets suivies de leurs pistes sortantes.
-		for(Sommet s : sommets){
-			System.out.print(s.getNom()+" ");
-			for(Chemin c : s.getSortants()){
-				System.out.print(c.getNom()+" ");
-			}
-			System.out.println();
-		}
+//		for(Sommet s : sommets){
+//			System.out.print(s.getNom()+" ");
+//			for(Chemin c : s.getSortants()){
+//				System.out.print(c.getNom()+" ");
+//			}
+//			System.out.println();
+//		}
 		
 		if(sommetExiste(depart)){
 			System.out.println("Sommet " +depart+" existe.");
@@ -46,26 +47,54 @@ public class DomaineDeSki {
 					s.setDistance(0);
 					s.setPere(null);
 					aTraiter.add(s);
+					this.debut = s;
+				}
+				if(s.getNom().equals(arriver)){
+					this.arriver = s;
 				}
 			}
 			System.out.println("Sommet de départ initialisés.");
 			int i = 0;
-			while(_traitementTerminer()){
-				System.out.println("Traitement "+(i++));
+			while(!(_isTraitementTerminer())){
+				//TODO: ne pas oublier de mettre s.setTraiter();
+//				System.out.println("Traitement "+(i++));
 				Sommet enTraitement = _plusPetitNonTraiter(aTraiter);
-				System.out.println(enTraitement.getNom());
-				for(Chemin c : enTraitement.getSortants()){
-					System.out.println(c.getNom());
+				if(enTraitement != null){ 
+					System.out.println("En traitement : " +enTraitement.getNom());
+					for(Chemin c : enTraitement.getSortants()){
+//						System.out.println(c.getNom());
+						for(Sommet s : sommets){
+							if(c.getArriver().equals(s.getNom()) && !(aTraiter.contains(s))){
+								aTraiter.add(s);
+							}
+							if(c.getArriver().equals(s.getNom())){
+								if(s.getDistance()>(enTraitement.getDistance()+c.getTaille())){
+									s.setDistance(enTraitement.getDistance()+c.getTaille());
+									s.setPere(enTraitement);
+								}
+							}
+						}
+					}
 				}
+				enTraitement.setTraiter();
+				aTraiter.remove(enTraitement);
 			}
+			//Remonte la chaine de sommet depuis l'arriver vers le debut.
+			Sommet actuel = this.arriver;
+			while(actuel.getDistance()!= 0){
+				plusCourtChemin+= actuel.getNom()+ " <- ";
+				actuel = actuel.getPere();
+//				System.out.println("Boucle remonte chaine");
+			}
+			plusCourtChemin+=this.debut.getNom();
 		}
 		else{
 			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");
 		}
-		return "Hello World!";
+		return plusCourtChemin;
 	}
 		
-	private boolean _traitementTerminer() {
+	private boolean _isTraitementTerminer() {
 		for(Sommet s : sommets){
 			if(!(s.isTraiter())){
 				return false;
@@ -76,6 +105,9 @@ public class DomaineDeSki {
 
 	private Sommet _plusPetitNonTraiter(ArrayList<Sommet> aTraiter){
 		Sommet min = null;
+		if(aTraiter.size() == 0){
+			return null;
+		}
 		for(Sommet s : aTraiter){
 			if(!(s.isTraiter())){
 				min = s;
