@@ -20,6 +20,8 @@ public class Algo_Projet {
 		arriver = in.nextLine();
 		System.out.println(huez.plusCourtChemin_Djikstra(depart, arriver));
 		
+		in.close();
+		
 //		System.out.println(huez.plusCourtChemin_Djikstra("Barbarate", "Barbarate"));
 //		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Villard_Reculas"));
 //		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Signal"));
