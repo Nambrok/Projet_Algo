@@ -39,35 +39,50 @@ public class DomaineDeSki {
 //			}
 //			System.out.println();
 //		}
-		
-		if(sommetExiste(depart)){
-			System.out.println("Sommet " +depart+" existe.");
+		//Si le sommet de départ et le sommet d'arriver existe, on peut continuer.
+		if(sommetExiste(depart) && sommetExiste(arriver)){
+			//On initialise les sommets. Si le sommet est le début, on met sa distance à 0 et son pere à null.
+			//On stocke aussi les sommets de debut et d'arriver
+			//On leur dit aussi qu'ils n'ont pas encore été traiter avec setTraiterFalse()
+			if(depart.equals(arriver)){
+				return "Vous êtes déjà à "+depart+".";
+			}
 			for(Sommet s : sommets){
 				if(s.getNom().equals(depart)){
 					s.setDistance(0);
+					aTraiter.add(s);//On ajoute le sommet de départ dans la liste des sommets à traiter (aTraiter)
 					s.setPere(null);
-					aTraiter.add(s);
 					this.debut = s;
 				}
-				if(s.getNom().equals(arriver)){
+				else if(s.getNom().equals(arriver)){
 					this.arriver = s;
 				}
+				else{
+					s.setDistance(100000000);
+				}
+				s.setTraiterFalse();
 			}
-			System.out.println("Sommet de départ initialisés.");
-			int i = 0;
-			while(!(_isTraitementTerminer())){
-				//TODO: ne pas oublier de mettre s.setTraiter();
-//				System.out.println("Traitement "+(i++));
+			
+//			System.out.println("Sommet de départ initialisés.");
+			
+			while(!(_isTraitementTerminer(aTraiter))){//Tant que pas tout les sommets ont été traité on continue de tourner
+				//TODO: Warning: Si pas tous les sommets du graphe sont accessible alors on tournera dans le vide car on ne pourra pas atteindre certains des sommets mais on vérifie quand même si ceux ci sont traités. Ne devrait pas poser de problèmes dans notre graphe. A gerer si le temps est disponible. 
 				Sommet enTraitement = _plusPetitNonTraiter(aTraiter);
-				if(enTraitement != null){ 
-					System.out.println("En traitement : " +enTraitement.getNom());
+				//On choisit le sommet qui a la plus petite distance et qui est disponible pour le traitement, c'est-à-dire qu'on la déjà rencontrer.
+				//Première exécution il n'y a que le sommet de départ, donc enTraitement est this.debut, le sommet de départ.
+				if(enTraitement != null){ //Si on a pas fini des les traiter, c'est à dire que _plusPetitNonTraiter ne renvoie pas null.
+//					System.out.println("En traitement : " +enTraitement.getNom());
 					for(Chemin c : enTraitement.getSortants()){
-//						System.out.println(c.getNom());
+						//On regarde toutes les arêtes partant du sommet enTraitement
 						for(Sommet s : sommets){
-							if(c.getArriver().equals(s.getNom()) && !(aTraiter.contains(s))){
+							if(c.getArriver().equals(s.getNom()) && !(aTraiter.contains(s))){//On trouve le sommet d'arriver de l'arête et si elle n'est pas déjà marquer à traiter, on l'ajoute à aTraiter.
 								aTraiter.add(s);
 							}
-							if(c.getArriver().equals(s.getNom())){
+							if(c.getArriver().equals(s.getNom())){//On identifie le sommet d'arriver de l'arrête
+								//Et si on peut l'atteindre avec une distance plus courte alors on marque sa nouvelle distance
+								//comme étant la distance qu'on a mis pour arriver jusqu'ici (enTraitement.getDistance()) 
+								//et on y ajoute le taille de l'arêtes qu'on doit parcourir pour y arriver.
+								//Son nouveau pere se trouve être le sommet sur lequel on se trouve actuellement et duquel on peut l'atteindre en le moins de temps possible (enTraitement).
 								if(s.getDistance()>(enTraitement.getDistance()+c.getTaille())){
 									s.setDistance(enTraitement.getDistance()+c.getTaille());
 									s.setPere(enTraitement);
@@ -75,27 +90,32 @@ public class DomaineDeSki {
 							}
 						}
 					}
+					enTraitement.setTraiter();
+					//On marque enTraitement comme quoi il a été traiter.
+					aTraiter.remove(enTraitement);
+					//Et on l'enlève de la liste des sommets qu'il reste à traiter.
 				}
-				enTraitement.setTraiter();
-				aTraiter.remove(enTraitement);
+				
 			}
+			
 			//Remonte la chaine de sommet depuis l'arriver vers le debut.
-			Sommet actuel = this.arriver;
+			Sommet actuel = this.arriver.getPere();
+			plusCourtChemin = this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.";
 			while(actuel.getDistance()!= 0){
-				plusCourtChemin+= actuel.getNom()+ " <- ";
+				plusCourtChemin = actuel.getNom()+" -> "+plusCourtChemin;
+				//On marque plusCourtChemin à l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au début grâce au père.
 				actuel = actuel.getPere();
-//				System.out.println("Boucle remonte chaine");
 			}
-			plusCourtChemin+=this.debut.getNom();
+			plusCourtChemin = this.debut.getNom()+ " -> " + plusCourtChemin;
 		}
 		else{
-			System.out.println("Erreur : Le sommet de départ spécifié n'existe pas.");
+			System.out.println("Erreur : Le sommet de départ ou d'arrivé spécifié n'existe pas.");
 		}
 		return plusCourtChemin;
 	}
 		
-	private boolean _isTraitementTerminer() {
-		for(Sommet s : sommets){
+	private boolean _isTraitementTerminer(ArrayList<Sommet> aTraiter) {
+		for(Sommet s : aTraiter){
 			if(!(s.isTraiter())){
 				return false;
 			}

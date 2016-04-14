@@ -13,7 +13,7 @@ public class Sommet {
 		this.nom = nom;
 		this.sorties = new ArrayList<Chemin>();
 		this.setDistance(1000000000);
-		this.traiter = false;
+		this.setTraiterFalse();
 		this.setPere(null);
 	}
 	
@@ -23,7 +23,7 @@ public class Sommet {
 		this.sorties = new ArrayList<Chemin>();
 		this.sorties.add(first);
 		this.setDistance(1000000000);
-		this.traiter = false;
+		this.setTraiterFalse();
 		this.setPere(null);
 	}
 	
@@ -51,6 +51,10 @@ public class Sommet {
 	
 	public void setTraiter(){
 		this.traiter = true;
+	}
+	
+	public void setTraiterFalse(){
+		this.traiter = false;
 	}
 	
 	public ArrayList<Chemin> getSortants(){
