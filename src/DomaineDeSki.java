@@ -160,7 +160,7 @@ public class DomaineDeSki {
 		//Je traite ici la chaine de caractères obtenue en entrée pour en extraire les informations nécessaires
 		//à la création des pistes et sommets du graphe.
 		//TODO: Apprendre à lire le type depuis la DB c'est comme "nom type depart arriver taille"
-		String nom = ""; String depart = ""; String arriver = ""; String StrTaille = ""; int taille = 0;
+		String nom = ""; String depart = ""; String arriver = ""; String type = ""; String StrTaille = ""; int taille = 0;
 		int tres = 0;
 		for(int i = 0; i<in.length(); i++){
 			if(tres == 0){
@@ -173,7 +173,7 @@ public class DomaineDeSki {
 			}
 			else if(tres == 1){
 				if(in.charAt(i) != ' '){
-					depart += in.charAt(i);				
+					type += in.charAt(i);				
 				}
 				else{
 					tres++;
@@ -181,13 +181,21 @@ public class DomaineDeSki {
 			}
 			else if(tres == 2){
 				if(in.charAt(i) != ' '){
-					arriver += in.charAt(i);				
+					depart += in.charAt(i);
 				}
 				else{
 					tres++;
 				}
 			}
 			else if(tres == 3){
+				if(in.charAt(i) != ' '){
+					arriver += in.charAt(i);				
+				}
+				else{
+					tres++;
+				}
+			}
+			else if(tres == 4){
 				if(in.charAt(i) != ' '){
 					StrTaille += in.charAt(i);
 				}
@@ -197,7 +205,7 @@ public class DomaineDeSki {
 			}
 		}
 		taille = Integer.parseInt(StrTaille);
-		linkCheminASommet(new Chemin(nom, depart, arriver, taille));
+		linkCheminASommet(new Chemin(nom, type, depart, arriver, taille));
 		
 //		this.pistes.add(new Chemin(nom, depart, arriver, taille));
 	}
