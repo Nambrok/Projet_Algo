@@ -6,17 +6,44 @@ public class DomaineDeSki {
 	private ArrayList<Sommet> sommets;
 	private Sommet debut;
 	private Sommet arriver;
+	private int difficulte;//difficulte : 0 -> moyen, 1 ->experimenté
 	
 	//Constructeur.
-	public DomaineDeSki(){
+	public DomaineDeSki(int difficulte){
 		this.sommets = new ArrayList<Sommet>();
 		this.debut = null;
 		this.arriver = null;
+		this.setDifficulte(difficulte);
 	}
 	
 	public int getNombredeSommets(){
 		//Renvoie le nombre de sommet que contient le graphe.
 		return this.sommets.size();
+	}
+	
+	public int getDifficulte(){
+		return this.difficulte;
+	}
+	
+	public void setDifficulte(int setting){
+		this.difficulte = setting;
+	}
+	
+	public void setDifficulte(String setting){
+		if(setting.equals("normal")){
+			setDifficulte(0);
+		}
+		else if(setting.equals("experimente")){
+			setDifficulte(1);
+		}
+		else if(setting.equals("exit")){
+			setDifficulte(-1);
+			System.exit(0);
+		}
+		else{
+			System.out.println("Erreur : la difficulté entrée n'est pas correcte.");
+			setDifficulte(-1);
+		}
 	}
 	
 	private boolean sommetExiste(String d){
@@ -40,7 +67,7 @@ public class DomaineDeSki {
 //			}
 //			System.out.println();
 //		}
-		
+			
 		//Si le sommet de départ et le sommet d'arriver existe, on peut continuer.
 		if(sommetExiste(depart) && sommetExiste(arriver)){
 			//On initialise les sommets. Si le sommet est le début, on met sa distance à 0 et son pere à null.
@@ -85,6 +112,7 @@ public class DomaineDeSki {
 								if(s.getDistance()>(enTraitement.getDistance()+c.getTaille())){
 									s.setDistance(enTraitement.getDistance()+c.getTaille());
 									s.setPere(enTraitement);
+									s.setCheminArrivantPere(c);
 								}
 							}
 						}
@@ -96,15 +124,7 @@ public class DomaineDeSki {
 				}
 			}
 			
-			//Remonte la chaine de sommet depuis l'arriver vers le debut.
-			Sommet actuel = this.arriver.getPere();
-			plusCourtChemin = this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.";
-			while(actuel.getDistance()!= 0){
-				plusCourtChemin = actuel.getNom()+" -> "+plusCourtChemin;
-				//On marque plusCourtChemin à l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au début grâce au père.
-				actuel = actuel.getPere();
-			}
-			plusCourtChemin = this.debut.getNom()+ " -> " + plusCourtChemin;
+			plusCourtChemin = _getStringFromArriver(this.arriver);
 		}
 		else{
 			System.out.println("Erreur : Le sommet de départ ou d'arrivé spécifié n'existe pas.");
@@ -112,6 +132,22 @@ public class DomaineDeSki {
 		return plusCourtChemin;
 	}
 		
+	private String _getStringFromArriver(Sommet arr) {
+		String plusCourtChemin;
+		//Remonte la chaine de sommet depuis l'arriver vers le debut.
+		Sommet actuel = this.arriver.getPere();
+		plusCourtChemin = this.arriver.getCheminArrivantPere().getNom()+" -> "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.";
+		while(actuel.getDistance()!= 0){
+			plusCourtChemin = actuel.getNom()+" -> "+plusCourtChemin;
+			plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" ->"+plusCourtChemin;
+			//On marque plusCourtChemin à l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au début grâce au père.
+			actuel = actuel.getPere();
+		}
+		plusCourtChemin = this.debut.getNom()+ " -> " + plusCourtChemin;
+
+		return plusCourtChemin;
+	}
+
 	private boolean _isTraitementTerminer(ArrayList<Sommet> aTraiter) {
 		//Vérifie si les sommets de aTraiter sont traités.
 		for(Sommet s : aTraiter){
@@ -220,6 +256,7 @@ public class DomaineDeSki {
 				existe = true;
 			}
 		}
+		
 		if(!existe){
 			sommets.add(new Sommet(aLinker.getDepart(), aLinker));
 		}
@@ -227,6 +264,7 @@ public class DomaineDeSki {
 		existe = false;
 		for(Sommet s : sommets){
 			if(s.getNom().equals(aLinker.getArriver())){
+				s.ajouterCheminArrivant(aLinker);
 				existe = true;
 			}
 		}
