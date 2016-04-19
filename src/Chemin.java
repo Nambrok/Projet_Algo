@@ -42,4 +42,8 @@ public class Chemin {
 	public String getNom(){
 		return this.nom;
 	}
+	
+	public String getType(){
+		return this.type;
+	}
 }

@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
 
-
 public class DomaineDeSki {
 	private ArrayList<Sommet> sommets;
 	private Sommet debut;
@@ -58,6 +57,7 @@ public class DomaineDeSki {
 	
 	public String plusCourtChemin_Djikstra(String depart, String arriver){
 		ArrayList<Sommet> aTraiter = new ArrayList<Sommet>();
+		ArrayList<Sommet> traiter = new ArrayList<Sommet>();
 		String plusCourtChemin = "";
 		//Affichage de test Affiche les sommets suivies de leurs pistes sortantes.
 //		for(Sommet s : sommets){
@@ -74,7 +74,7 @@ public class DomaineDeSki {
 			//On stocke aussi les sommets de debut et d'arriver
 			//On leur dit aussi qu'ils n'ont pas encore √©t√© traiter avec setTraiterFalse()
 			if(depart.equals(arriver)){
-				return "Vous √™tes d√©j√† √† "+depart+".";
+				return "Vous Ítes dÈj‡† ‡† "+depart+".";
 			}
 			for(Sommet s : sommets){
 				if(s.getNom().equals(depart)){
@@ -101,8 +101,10 @@ public class DomaineDeSki {
 					for(Chemin c : enTraitement.getSortants()){
 						//On regarde toutes les ar√™tes partant du sommet enTraitement
 						for(Sommet s : sommets){
-							if(c.getArriver().equals(s.getNom()) && !(aTraiter.contains(s))){//On trouve le sommet d'arriver de l'ar√™te et si elle n'est pas d√©j√† marquer √† traiter, on l'ajoute √† aTraiter.
+//							System.out.println("En traitement : " + enTraitement.getNom() + " Sommet : "+ s.getNom());
+							if(c.getArriver().equals(s.getNom()) && !(traiter.contains(s))){//On trouve le sommet d'arriver de l'ar√™te et si elle n'est pas d√©j√† marquer √† traiter, on l'ajoute √† aTraiter.
 								aTraiter.add(s);
+//								System.out.println("Nouveau ‡ traiter : " +s.getNom());
 							}
 							if(c.getArriver().equals(s.getNom())){//On identifie le sommet d'arriver de l'arr√™te
 								//Et si on peut l'atteindre avec une distance plus courte alors on marque sa nouvelle distance
@@ -113,6 +115,7 @@ public class DomaineDeSki {
 									s.setDistance(enTraitement.getDistance()+c.getTaille());
 									s.setPere(enTraitement);
 									s.setCheminArrivantPere(c);
+//									System.out.println("Nouvelle distance : " + s.getNom() +" "+s.getDistance());
 								}
 							}
 						}
@@ -120,6 +123,7 @@ public class DomaineDeSki {
 					enTraitement.setTraiter();
 					//On marque enTraitement comme quoi il a √©t√© traiter.
 					aTraiter.remove(enTraitement);
+					traiter.add(enTraitement);
 					//Et on l'enl√®ve de la liste des sommets qu'il reste √† traiter.
 				}
 			}
@@ -133,21 +137,91 @@ public class DomaineDeSki {
 	}
 		
 	private String _getStringFromArriver(Sommet arr) {
-		String plusCourtChemin;
+		String plusCourtChemin ="";
 		//Remonte la chaine de sommet depuis l'arriver vers le debut.
 		Sommet actuel = this.arriver.getPere();
-		plusCourtChemin = this.arriver.getCheminArrivantPere().getNom()+" -> "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.";
-		while(actuel.getDistance()!= 0){
-			plusCourtChemin = actuel.getNom()+" -> "+plusCourtChemin;
+		switch(actuel.getCheminArrivantPere().getType()){
+		case "tÈlÈski":
+			plusCourtChemin = "Prenez le tÈlÈski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "tÈlÈsiege":
+			plusCourtChemin = "Prenez le tÈlÈsiËge "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "tÈlÈcabine":
+			plusCourtChemin = "Prenez la tÈlÈcabine "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "tÈlÈphÈrique":
+			plusCourtChemin = "Prenez le tÈlÈphÈrique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "noir":
+			plusCourtChemin = "Prenez la piste noir "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "bleu":
+			plusCourtChemin = "Prenez la piste bleu "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "vert":
+			plusCourtChemin = "Prenez la piste verte "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		case "rouge":
+			plusCourtChemin = "Prenez la piste rouge "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			break;
+		default:
 			plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
+			break;
+		}
+		plusCourtChemin = "Vous Ítes arrivÈ ‡ "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.\n";
+		while(actuel.getDistance()!= 0){
+			plusCourtChemin = "Vous Ítes ‡ "+ actuel.getNom()+"\n"+plusCourtChemin;
+			switch(actuel.getCheminArrivantPere().getType()){
+			case "tÈlÈski":
+				plusCourtChemin = "Prenez le tÈlÈski "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "tÈlÈsiege":
+				plusCourtChemin = "Prenez le tÈlÈsiËge "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "tÈlÈcabine":
+				plusCourtChemin = "Prenez la tÈlÈcabine "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "tÈlÈphÈrique":
+				plusCourtChemin = "Prenez le tÈlÈphÈrique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "noir":
+				plusCourtChemin = "Prenez la piste noir "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "bleu":
+				plusCourtChemin = "Prenez la piste bleu "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "vert":
+				plusCourtChemin = "Prenez la piste verte "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			case "rouge":
+				plusCourtChemin = "Prenez la piste rouge "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				break;
+			default:
+				plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
+				break;
+			}
+			
 			//On marque plusCourtChemin √† l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au d√©but gr√¢ce au p√®re.
 			actuel = actuel.getPere();
 		}
-		plusCourtChemin = this.debut.getNom()+ " -> " + plusCourtChemin;
+		plusCourtChemin = "Vous Ítes ‡ " +this.debut.getNom()+ "\n" + plusCourtChemin;
 
-		return plusCourtChemin;
+		return _turnTiretEspace(plusCourtChemin);
 	}
 
+	private String _turnTiretEspace(String in){
+		String res = "";
+		for(int i = 0; i<in.length(); i++){
+			if(in.charAt(i) == '_'){
+				res+= " ";
+			}
+			else{
+				res+=in.charAt(i);
+			}
+		}
+		return res;
+	}
 	private boolean _isTraitementTerminer(ArrayList<Sommet> aTraiter) {
 		//V√©rifie si les sommets de aTraiter sont trait√©s.
 		for(Sommet s : aTraiter){
