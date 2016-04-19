@@ -9,7 +9,7 @@ public class Algo_Projet {
 		
 		
 		DomaineDeSki huez = new DomaineDeSki(-1);
-		huez.chargerDonnees("BD/BD.txt");
+		huez.chargerDonnees("BD/Piste.txt");
 		String depart; String arriver;
 		
 		Scanner in = new Scanner(System.in);

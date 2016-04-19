@@ -139,7 +139,7 @@ public class DomaineDeSki {
 		plusCourtChemin = this.arriver.getCheminArrivantPere().getNom()+" -> "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.";
 		while(actuel.getDistance()!= 0){
 			plusCourtChemin = actuel.getNom()+" -> "+plusCourtChemin;
-			plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" ->"+plusCourtChemin;
+			plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
 			//On marque plusCourtChemin à l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au début grâce au père.
 			actuel = actuel.getPere();
 		}
@@ -240,8 +240,11 @@ public class DomaineDeSki {
 				}
 			}
 		}
-		taille = Integer.parseInt(StrTaille);
-		linkCheminASommet(new Chemin(nom, type, depart, arriver, taille));
+		if(StrTaille != ""){
+			taille = Integer.parseInt(StrTaille);
+			linkCheminASommet(new Chemin(nom, type, depart, arriver, taille));
+		}
+		
 		
 //		this.pistes.add(new Chemin(nom, depart, arriver, taille));
 	}
