@@ -1,57 +1,1 @@
-Vaujany_Enversin télécabine Enversin_d'oz Vaujany 12
-Vaujany_Villette télécabine Vaujany Villette 20
-Villette_Montfrais télécabine Villette Montfrais_s 18
-vaujaniate bleu Montfrais_s Villette 18
-Montfrais télésiege Montfrais_s Montfrais_téléski 25
-étourneaux bleu Montfrais_télésiege Montfrais_s 11
-cascade bleu Montfrais_télésiege Montfrais_téléski2 5
-myrtilles bleu Montfrais_télésiege Montfrais_téléski 6
-les_travers bleu Montfrais_téléski2 Montfrais_téléski 7
-écureuils vert Montfrais_téléski Montfrais_s 6
-Montfrais1 téléski Montfrais_s Montfrais_téléski 9
-Montfrais2 téléski Montfrais_téléski Montfrais_téléski2 12
-la_fare noir Montfrais_téléski2 Enversin_d'oz 28
-Clos_giraud télésiege Montfrais_téléski2 Alpette_s 25
-chalets bleu Alpette_s Montfrais_téléski2 12
-carrelet vert Alpette_s Alpette_téléski 6
-L'alpette_téléski téléski Alpette_téléski Alpette_s 9
-L'alpette_télésiege télésiege Oz_en_oisans Alpette_s 37
-Vaujany_Alpette téléphérique Vaujany Alpette_s 36
-alpette1 rouge Alpette_téléski alpette_champclotury 7
-alpette2 rouge alpette_champclotury Oz_en_oisans 9
-chevreuils bleu alpette_champclotury Oz_en_oisans 10
-roche_noire noir alpette_champclotury Oz_en_oisans 7
-Poutran1 télécabine Oz_en_oisans Poutran_s 18
-champclotury bleu Poutran_s alpette_champclotury 4
-Champ_clotury téléski lutins_olmet Poutran_s 6
-lutins vert Poutrans_s lutins_olmet 3
-l'olmet rouge lutins_olmet Oz_en_oisans 10
-Alpette_rousses téléphérique Alpette_s Dome_des_petites_rousses 25
-le_dome rouge Dome_des_petites_rousses tronçon_2700 9
-le_belvedere1 rouge Dome_des_petites_rousses Belvedere_Bartavelles 5
-le_belvedere2 rouge Belvedere_Bartavelles tronçons_2700 3
-bartavelles rouge Belvedere_Bartavelles Alpette_téléski 29
-rousses rouge tronçon_2700 Alpette_s 24
-Pic_blanc téléphérique tronçon_2700 Pic_blanc_s 24
-2eme_tronçon téléphérique tronçon_2100 tronçon_2700 17
-chamois1 rouge tronçon_2700 chamois_chavannus 9
-chamois2 rouge chamois_chavannus tronçon_2100 4
-poutran1 rouge tronçon_2100 poutran_chavannus 8
-chavannus rouge chamois_chavannus poutran_chavannus 9
-poutran2 rouge poutrand_chavannus lutins_olmet 8
-bd_des_lutins bleu tronçon_2100 poutran_chavannus 9
-tunnel1 noir Pic_blanc_s tunnel_breche 9
-tunnel2 noir tunnel_breche tronçon_2700 11
-breche noir tunnel_breche Lac_s 12
-Lac_blanc télésiege Lac_s tronçon_2700 15
-glacier noir Pic_blanc_s Glacier_s 6
-herpie bleu Glacier_s hermine_sarenne 7
-hermine rouge Glacier_s hermine_sarenne 8
-cristalliere bleu Glacier_s hermine_sarenne 8
-sarenne1 noir Pic_blanc_s hermine_sarenne 13
-sarenne2 noir hermine_sarenne sarenne_chateau 14
-sarenne3 noir sarenne_chateau Chalvet_b 32
-chateau_noir noir Pic_blanc_s sarenne_chateau 26
-Herpi_télésiege télésiege hermine_sarenne Glacier_s 22
-Glacier_télésiege télésiege Glacier_s Pic_blanc_s 15 
-Chalvet télésiege Chalvet_b Chalvet_s 25
+Vaujany_Enversin télécabine Enversin_d'oz Vaujany 12Vaujany_Villette télécabine Vaujany Villette 20Villette_Montfrais télécabine Villette Montfrais_s 18vaujaniate bleu Montfrais_s Villette 18Montfrais télésiege Montfrais_s Montfrais_téléski 25étourneaux bleu Montfrais_télésiege Montfrais_s 11cascade bleu Montfrais_télésiege Montfrais_téléski2 5myrtilles bleu Montfrais_télésiege Montfrais_téléski 6les_travers bleu Montfrais_téléski2 Montfrais_téléski 7écureuils vert Montfrais_téléski Montfrais_s 6Montfrais1 téléski Montfrais_s Montfrais_téléski 9Montfrais2 téléski Montfrais_téléski Montfrais_téléski2 12la_fare noir Montfrais_téléski2 Enversin_d'oz 28Clos_giraud télésiege Montfrais_téléski2 Alpette_s 25chalets bleu Alpette_s Montfrais_téléski2 12carrelet vert Alpette_s Alpette_téléski 6L'alpette_téléski téléski Alpette_téléski Alpette_s 9L'alpette_télésiege télésiege Oz_en_oisans Alpette_s 37Vaujany_Alpette téléphérique Vaujany Alpette_s 36alpette1 rouge Alpette_téléski alpette_champclotury 7alpette2 rouge alpette_champclotury Oz_en_oisans 9chevreuils bleu alpette_champclotury Oz_en_oisans 10roche_noire noir alpette_champclotury Oz_en_oisans 7Poutran1 télécabine Oz_en_oisans Poutran_s 18champclotury bleu Poutran_s alpette_champclotury 4Champ_clotury téléski lutins_olmet Poutran_s 6lutins vert Poutrans_s lutins_olmet 3l'olmet rouge lutins_olmet Oz_en_oisans 10Alpette_rousses téléphérique Alpette_s Dome_des_petites_rousses 25le_dome rouge Dome_des_petites_rousses tronçon_2700 9le_belvedere1 rouge Dome_des_petites_rousses Belvedere_Bartavelles 5le_belvedere2 rouge Belvedere_Bartavelles tronçons_2700 3bartavelles rouge Belvedere_Bartavelles Alpette_téléski 29rousses rouge tronçon_2700 Alpette_s 24Pic_blanc téléphérique tronçon_2700 Pic_blanc_s 242eme_tronçon téléphérique tronçon_2100 tronçon_2700 17chamois1 rouge tronçon_2700 chamois_chavannus 9chamois2 rouge chamois_chavannus tronçon_2100 4poutran1 rouge tronçon_2100 poutran_chavannus 8chavannus rouge chamois_chavannus poutran_chavannus 9poutran2 rouge poutrand_chavannus lutins_olmet 8bd_des_lutins bleu tronçon_2100 poutran_chavannus 9tunnel1 noir Pic_blanc_s tunnel_breche 9tunnel2 noir tunnel_breche tronçon_2700 11breche noir tunnel_breche Lac_s 12Lac_blanc télésiege Lac_s tronçon_2700 15glacier noir Pic_blanc_s Glacier_s 6herpie bleu Glacier_s hermine_sarenne 7hermine rouge Glacier_s hermine_sarenne 8cristalliere bleu Glacier_s hermine_sarenne 8sarenne1 noir Pic_blanc_s hermine_sarenne 13sarenne2 noir hermine_sarenne sarenne_chateau 14sarenne3 noir sarenne_chateau Chalvet_b 32chateau_noir noir Pic_blanc_s sarenne_chateau 26Herpi_télésiege télésiege hermine_sarenne Glacier_s 22Glacier_télésiege télésiege Glacier_s Pic_blanc_s 15Chalvet télésiege Chalvet_b Chalvet_s 25Marmottes3 téléphérique Clocher_de_macle Glacier_s 14combe_charbonnière noir Clocher_de_macle Chalvet_s 22balcons noir Clocher_de_macle Lievre_s 10clocher_de_macle noir Clocher_de_macle Lievre_s 8promontoire rouge Clocher_de_macle Lievre_s 12Lievre_blanc_télésiege télésiege tronçon_2100 Lievre_s 20lievre_blanc rouge Lievre_s lievre_marmotte 5boulevard_des_marmottes bleu lievre_marmotte Plat_des_marmottes 9Marmottes2 télécabine Plat_des_marmottes Clocher_de_macle 18déversoir rouge Lievre_s Plat_des_marmottes 6couloir1 bleu tronçon_2700 lievre_marmotte 9couloir2 bleu lievre_marmotte tronçon_2100 7dahut rouge Plat_des_marmottes tronçon_2100 13poutat rouge Plat_des_marmottes tronçon_2100 11ancolie bleu Plat_des_marmottes tronçon_2100 14campanules1 rouge Chalvet_s altiport 16campanules2 rouge altiport Alpe_d'huez 3la_balme noir Plat_des_marmottes altiport 23canyon rouge Plat_des_marmottes altiport 18olympique rouge Plat_des_marmottes altiport 19vachette bleu Plat_des_marmottes vachette_novat 5pierre_novat vert vachette_novat tronçon_2100 8les_bergers vert tronçon_2100 Alpe_d'huez 20agneaux vert vachette_novat Alpe_d'huez 17Romains télésiege Alpe_d'huez vachette_novat 35Marmottes1 télésiege Alpe_d'huez Plat_des_marmottes 401er_tronçon téléphérique Alpe_d'huez tronçon_2100 17Grande_sure télésiege Alpe_d'huez Signal_s 40signal bleu Signal_s Alpe_d'huez 16souveraine rouge Signal_s Petit_prince_b 15petit_prince bleu Signal_s Petit_prince_b 14les_vallons1 bleu Signal_s vallons_foret 4les_vallons2 bleu vallons_foret Petit_prince_b 10la_foret noir vallons_foret Villard_Reculas 16Petit_prince_télésiege télésiege Petit_prince_b Signal_s 30villard rouge Petit_prince_b Villard_reculas 10chemin_du_patre bleu Petit_prince_b Villard_Reculas 23Tsd_le_villarais télésiege Villard_Reculas Signal_s 45huez rouge Alpes_d'huez huez_village 6village1 bleu Alpes_d'huez huez_village 16village2 bleu huez_village Huez 6Télévillage télécabine Huez Alpes_d'huez 24Alpe_d'huez_télésiege télésiege Alpe_d'huez_auris Alpe_d'huez 15Alpauris télésiege Alpe_d'huez_auris Alpauris_s 12Frontfroide télésiege Alpauris_s Signal_de_l'homme 50Louvet télésiege Alpauris_s Auris_s 25Maronne_télésiege télésiege Maronne Maronne_s 35Sures télésiege Auris_en_oisans Maronne_s 22corniche vert Maronne_s Auris_en_oisans 12gentianes vert Maronne_s Col_s 3Col téléski Auris_en_oisans Col_s 9le_gua1 vert Auris_s Chalvet_b 13le_gua2 vert Chalvet_b Alpe_d'huez_auris 8col1 bleu Auris_s Col_s 10col2 bleu Col_s Auris_en_oisans 6eterlous vert Auris_s Alpauris_s 12Auris_Express télésiege Auris_en_oisans Auris_s 35pré_rond bleu Signal_de_l'homme Auris_s 20vernettes rouge Signal_de_l'homme Alpauris_s 20bergeries noir Signal_de_l'homme Chalvet_s 20frontfroide1 rouge Signal_de_l'homme frontfroide_escapade 9frontfroide2 rouge frontfroide_escapade Auris_s 4frontfroide3 rouge Auris_s Alpauris_s 12escapade rouge frontfroide_escapade Col_s 8maronne rouge frontfroide_escapade farcis_maronne 18les_farcis1 bleu Col_s farcis_maronne 12les_farcis2 bleu farcis_maronne Maronne 8la_fuma noir Maronne_s Maronne 14

@@ -74,7 +74,7 @@ public class DomaineDeSki {
 			//On stocke aussi les sommets de debut et d'arriver
 			//On leur dit aussi qu'ils n'ont pas encore Ã©tÃ© traiter avec setTraiterFalse()
 			if(depart.equals(arriver)){
-				return "Vous êtes déjà  à  "+depart+".";
+				return "Vous ï¿½tes dï¿½jï¿½ ï¿½ "+depart+".";
 			}
 			for(Sommet s : sommets){
 				if(s.getNom().equals(depart)){
@@ -104,7 +104,7 @@ public class DomaineDeSki {
 //							System.out.println("En traitement : " + enTraitement.getNom() + " Sommet : "+ s.getNom());
 							if(c.getArriver().equals(s.getNom()) && !(traiter.contains(s))){//On trouve le sommet d'arriver de l'arÃªte et si elle n'est pas dÃ©jÃ  marquer Ã  traiter, on l'ajoute Ã  aTraiter.
 								aTraiter.add(s);
-//								System.out.println("Nouveau à traiter : " +s.getNom());
+//								System.out.println("Nouveau ï¿½ traiter : " +s.getNom());
 							}
 							if(c.getArriver().equals(s.getNom())){//On identifie le sommet d'arriver de l'arrÃªte
 								//Et si on peut l'atteindre avec une distance plus courte alors on marque sa nouvelle distance
@@ -141,17 +141,17 @@ public class DomaineDeSki {
 		//Remonte la chaine de sommet depuis l'arriver vers le debut.
 		Sommet actuel = this.arriver.getPere();
 		switch(actuel.getCheminArrivantPere().getType()){
-		case "téléski":
-			plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+		case "tÃ©lÃ©ski":
+			plusCourtChemin = "Prenez le tÃ©lÃ©ski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			break;
-		case "télésiege":
-			plusCourtChemin = "Prenez le télésiège "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+		case "tÃ©lÃ©siege":
+			plusCourtChemin = "Prenez le tÃ©lÃ©siÃ¨ge "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			break;
-		case "télécabine":
-			plusCourtChemin = "Prenez la télécabine "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+		case "tÃ©lÃ©cabine":
+			plusCourtChemin = "Prenez la tÃ©lÃ©cabine "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			break;
-		case "téléphérique":
-			plusCourtChemin = "Prenez le téléphérique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+		case "tÃ©lÃ©phÃ©rique":
+			plusCourtChemin = "Prenez le tÃ©lÃ©phÃ©rique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			break;
 		case "noir":
 			plusCourtChemin = "Prenez la piste noir "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
@@ -169,21 +169,21 @@ public class DomaineDeSki {
 			plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
 			break;
 		}
-		plusCourtChemin = "Vous êtes arrivé à "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.\n";
+		plusCourtChemin = "Vous Ãªtes arrivÃ© Ã  "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.\n";
 		while(actuel.getDistance()!= 0){
-			plusCourtChemin = "Vous êtes à "+ actuel.getNom()+"\n"+plusCourtChemin;
+			plusCourtChemin = "Vous Ãªtes Ã  "+ actuel.getNom()+"\n"+plusCourtChemin;
 			switch(actuel.getCheminArrivantPere().getType()){
-			case "téléski":
-				plusCourtChemin = "Prenez le téléski "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			case "tÃ©lÃ©ski":
+				plusCourtChemin = "Prenez le tÃ©lÃ©ski "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 				break;
-			case "télésiege":
-				plusCourtChemin = "Prenez le télésiège "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			case "tÃ©lÃ©siege":
+				plusCourtChemin = "Prenez le tÃ©lÃ©siege "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 				break;
-			case "télécabine":
-				plusCourtChemin = "Prenez la télécabine "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			case "tÃ©lÃ©cabine":
+				plusCourtChemin = "Prenez la tÃ©lÃ©cabine "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 				break;
-			case "téléphérique":
-				plusCourtChemin = "Prenez le téléphérique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			case "tÃ©lÃ©phÃ©rique":
+				plusCourtChemin = "Prenez le tÃ©lÃ©phÃ©rique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 				break;
 			case "noir":
 				plusCourtChemin = "Prenez la piste noir "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
@@ -205,7 +205,7 @@ public class DomaineDeSki {
 			//On marque plusCourtChemin Ã  l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au dÃ©but grÃ¢ce au pÃ¨re.
 			actuel = actuel.getPere();
 		}
-		plusCourtChemin = "Vous êtes à " +this.debut.getNom()+ "\n" + plusCourtChemin;
+		plusCourtChemin = "Vous Ãªtes Ã  " +this.debut.getNom()+ "\n" + plusCourtChemin;
 
 		return _turnTiretEspace(plusCourtChemin);
 	}
@@ -306,7 +306,7 @@ public class DomaineDeSki {
 				}
 			}
 			else if(tres == 4){
-				if(in.charAt(i) != ' '){
+				if(in.charAt(i) != ' ' || in.charAt(i)!= '\t'){
 					StrTaille += in.charAt(i);
 				}
 				else{
