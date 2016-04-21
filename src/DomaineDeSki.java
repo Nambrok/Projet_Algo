@@ -74,7 +74,7 @@ public class DomaineDeSki {
 			//On stocke aussi les sommets de debut et d'arriver
 			//On leur dit aussi qu'ils n'ont pas encore été traiter avec setTraiterFalse()
 			if(depart.equals(arriver)){
-				return "Vous �tes d�j� � "+depart+".";
+				return "Vous êtes déjà à "+depart+".";
 			}
 			for(Sommet s : sommets){
 				if(s.getNom().equals(depart)){
@@ -140,66 +140,62 @@ public class DomaineDeSki {
 		String plusCourtChemin ="";
 		//Remonte la chaine de sommet depuis l'arriver vers le debut.
 		Sommet actuel = this.arriver.getPere();
-		switch(actuel.getCheminArrivantPere().getType()){
-		case "téléski":
+		if(actuel.getCheminArrivantPere().getType().equals("teleski")){
 			plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "télésiege":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("telesiege")){
 			plusCourtChemin = "Prenez le télésiège "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "télécabine":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("telecabine")){
 			plusCourtChemin = "Prenez la télécabine "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "téléphérique":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("telepherique")){
 			plusCourtChemin = "Prenez le téléphérique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "noir":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("noir")){
 			plusCourtChemin = "Prenez la piste noir "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "bleu":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("bleu")){
 			plusCourtChemin = "Prenez la piste bleu "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "vert":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("vert")){
 			plusCourtChemin = "Prenez la piste verte "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		case "rouge":
+		}
+		else if(actuel.getCheminArrivantPere().getType().equals("rouge")){
 			plusCourtChemin = "Prenez la piste rouge "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-			break;
-		default:
+		}
+		else{
 			plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
-			break;
 		}
 		plusCourtChemin = "Vous êtes arrivé à "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.\n";
 		while(actuel.getDistance()!= 0){
 			plusCourtChemin = "Vous êtes à "+ actuel.getNom()+"\n"+plusCourtChemin;
-			switch(actuel.getCheminArrivantPere().getType()){
-			case "téléski":
-				plusCourtChemin = "Prenez le téléski "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "télésiege":
-				plusCourtChemin = "Prenez le télésiege "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "télécabine":
-				plusCourtChemin = "Prenez la télécabine "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "téléphérique":
+			if(actuel.getCheminArrivantPere().getType().equals("teleski")){
+				plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("telesiege")){
+				plusCourtChemin = "Prenez le télésiège "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("telecabine")){
+				plusCourtChemin = "Prenez la télécabine "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("telepherique")){
 				plusCourtChemin = "Prenez le téléphérique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "noir":
-				plusCourtChemin = "Prenez la piste noir "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "bleu":
-				plusCourtChemin = "Prenez la piste bleu "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "vert":
-				plusCourtChemin = "Prenez la piste verte "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			case "rouge":
-				plusCourtChemin = "Prenez la piste rouge "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
-				break;
-			default:
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("noir")){
+				plusCourtChemin = "Prenez la piste noir "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("bleu")){
+				plusCourtChemin = "Prenez la piste bleu "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("vert")){
+				plusCourtChemin = "Prenez la piste verte "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else if(actuel.getCheminArrivantPere().getType().equals("rouge")){
+				plusCourtChemin = "Prenez la piste rouge "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+			}
+			else{
 				plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
-				break;
 			}
 			
 			//On marque plusCourtChemin à l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au début grâce au père.
