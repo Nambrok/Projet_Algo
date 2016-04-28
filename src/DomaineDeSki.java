@@ -176,7 +176,9 @@ public class DomaineDeSki {
 		}
 		plusCourtChemin = "Vous êtes arrivé à "+this.arriver.getNom()+" en "+this.arriver.getDistance()+" minutes.\n";
 		while(actuel.getDistance()!= 0){
-			plusCourtChemin = "Vous êtes à "+ actuel.getNom()+"\n"+plusCourtChemin;
+			if(!(actuel.getNom().equals(this.arriver.getNom()))){
+				plusCourtChemin = "Vous êtes à "+ actuel.getNom()+"\n"+plusCourtChemin;
+			}
 			if(actuel.getCheminArrivantPere().getType().equals("teleski")){
 				plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}

@@ -19,9 +19,6 @@ public class Chemin {
 	public void setTailleFromDifficulte(int difficulte){
 		if(difficulte == 0){
 			//Normal, aucune taille ne change.
-		}
-		else{
-			//experimenté
 			if(this.type.equals("noir")){
 				this.taille = this.taille * 4;
 			}
@@ -31,6 +28,9 @@ public class Chemin {
 			else if(this.type.equals("bleu")){
 				this.taille = this.taille * 2;
 			}
+		}
+		else{
+			//experimenté, aucune taille ne change			
 		}
 	}
 	
