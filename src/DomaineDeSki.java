@@ -142,7 +142,11 @@ public class DomaineDeSki {
 	private String _getStringFromArriver(Sommet arr) {
 		String plusCourtChemin ="";
 		//Remonte la chaine de sommet depuis l'arriver vers le debut.
-		Sommet actuel = this.arriver.getPere();
+		Sommet actuel = this.arriver;
+		if(actuel == null){
+			System.exit(1);
+		}
+		
 		if(actuel.getCheminArrivantPere().getType().equals("teleski")){
 			plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 		}
@@ -203,6 +207,10 @@ public class DomaineDeSki {
 			
 			//On marque plusCourtChemin à l'envers puisque qu'on remonte dans le graphe depuis l'arriver jusqu'au début grâce au père.
 			actuel = actuel.getPere();
+			if(actuel == null){
+				System.out.println("Erreur actuel est null");
+				System.exit(1);				
+			}
 		}
 		plusCourtChemin = "Vous êtes à " +this.debut.getNom()+ "\n" + plusCourtChemin;
 
