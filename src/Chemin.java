@@ -5,7 +5,6 @@ public class Chemin {
 	private int taille;
 	private String nom;
 	private String type;
-	//TODO: Il faut aussi ajouter la difficulté.
 	
 	//Constructeur.
 	public Chemin(String nom, String type, String depart, String arriver, int taille){
@@ -18,15 +17,15 @@ public class Chemin {
 	
 	public void setTailleFromDifficulte(int difficulte){
 		if(difficulte == 0){
-			//Normal, aucune taille ne change.
+			//Normal
 			if(this.type.equals("noir")){
-				this.taille = this.taille * 4;
-			}
-			else if(this.type.equals("rouge")){
 				this.taille = this.taille * 3;
 			}
-			else if(this.type.equals("bleu")){
+			else if(this.type.equals("rouge")){
 				this.taille = this.taille * 2;
+			}
+			else if(this.type.equals("bleu")){
+//				this.taille = this.taille * 2;
 			}
 		}
 		else{
