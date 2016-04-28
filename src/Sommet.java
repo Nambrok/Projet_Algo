@@ -44,6 +44,12 @@ public class Sommet {
 		}
 	}
 	
+	public void setDifficulteSortantes(int difficulte){
+		for(Chemin c : this.sorties){
+			c.setTailleFromDifficulte(difficulte);
+		}
+	}
+	
 	public void setDistance(int d){
 		this.distance = d;
 	}

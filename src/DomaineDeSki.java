@@ -26,6 +26,9 @@ public class DomaineDeSki {
 	
 	public void setDifficulte(int setting){
 		this.difficulte = setting;
+		for(Sommet s : this.sommets){
+			s.setDifficulteSortantes(setting);
+		}
 	}
 	
 	public void setDifficulte(String setting){
@@ -104,7 +107,7 @@ public class DomaineDeSki {
 //							System.out.println("En traitement : " + enTraitement.getNom() + " Sommet : "+ s.getNom());
 							if(c.getArriver().equals(s.getNom()) && !(traiter.contains(s))){//On trouve le sommet d'arriver de l'arête et si elle n'est pas déjà marquer à traiter, on l'ajoute à aTraiter.
 								aTraiter.add(s);
-//								System.out.println("Nouveau � traiter : " +s.getNom());
+//								System.out.println("Nouveau à traiter : " +s.getNom());
 							}
 							if(c.getArriver().equals(s.getNom())){//On identifie le sommet d'arriver de l'arrête
 								//Et si on peut l'atteindre avec une distance plus courte alors on marque sa nouvelle distance

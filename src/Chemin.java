@@ -16,6 +16,23 @@ public class Chemin {
 		this.type = type;
 	}
 	
+	public void setTailleFromDifficulte(int difficulte){
+		if(difficulte == 0){
+			//Normal, aucune taille ne change.
+		}
+		else{
+			//experimenté
+			if(this.type.equals("noir")){
+				this.taille = this.taille * 4;
+			}
+			else if(this.type.equals("rouge")){
+				this.taille = this.taille * 3;
+			}
+			else if(this.type.equals("bleu")){
+				this.taille = this.taille * 2;
+			}
+		}
+	}
 	
 	public String toString(){
 		String str = new String();
