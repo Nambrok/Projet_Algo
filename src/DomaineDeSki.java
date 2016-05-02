@@ -95,8 +95,7 @@ public class DomaineDeSki {
 				s.setTraiterFalse();
 			}
 			
-			while(!(_isTraitementTerminer(aTraiter))){//Tant que pas tout les sommets ont été traité on continue de tourner
-				//TODO: Warning: Si pas tous les sommets du graphe sont accessible alors on tournera dans le vide car on ne pourra pas atteindre certains des sommets mais on vérifie quand même si ceux ci sont traités. Ne devrait pas poser de problèmes dans notre graphe. A gerer si le temps est disponible. 
+			while(!(_isTraitementTerminer(aTraiter))){//Tant que pas tout les sommets ont été traité on continue de tourner 
 				Sommet enTraitement = _plusPetitNonTraiter(aTraiter);
 				//On choisit le sommet qui a la plus petite distance et qui est disponible pour le traitement, c'est-à-dire qu'on la déjà rencontrer.
 				//Première exécution il n'y a que le sommet de départ, donc enTraitement est this.debut, le sommet de départ.
@@ -104,10 +103,8 @@ public class DomaineDeSki {
 					for(Chemin c : enTraitement.getSortants()){
 						//On regarde toutes les arêtes partant du sommet enTraitement
 						for(Sommet s : sommets){
-//							System.out.println("En traitement : " + enTraitement.getNom() + " Sommet : "+ s.getNom());
 							if(c.getArriver().equals(s.getNom()) && !(traiter.contains(s))){//On trouve le sommet d'arriver de l'arête et si elle n'est pas déjà marquer à traiter, on l'ajoute à aTraiter.
 								aTraiter.add(s);
-//								System.out.println("Nouveau à traiter : " +s.getNom());
 							}
 							if(c.getArriver().equals(s.getNom())){//On identifie le sommet d'arriver de l'arrête
 								//Et si on peut l'atteindre avec une distance plus courte alors on marque sa nouvelle distance
@@ -118,7 +115,6 @@ public class DomaineDeSki {
 									s.setDistance(enTraitement.getDistance()+c.getTaille());
 									s.setPere(enTraitement);
 									s.setCheminArrivantPere(c);
-//									System.out.println("Nouvelle distance : " + s.getNom() +" "+s.getDistance());
 								}
 							}
 						}
@@ -146,7 +142,10 @@ public class DomaineDeSki {
 		if(actuel == null){
 			System.exit(1);
 		}
-		
+		if(actuel.getCheminArrivantPere() == null){
+			System.out.println("Pas de chemin arrivant Pere"+actuel.toString());
+			System.exit(0);
+		}
 		if(actuel.getCheminArrivantPere().getType().equals("teleski")){
 			plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 		}
@@ -180,28 +179,28 @@ public class DomaineDeSki {
 				plusCourtChemin = "Vous êtes à "+ actuel.getNom()+"\n"+plusCourtChemin;
 			}
 			if(actuel.getCheminArrivantPere().getType().equals("teleski")){
-				plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez le téléski "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("telesiege")){
-				plusCourtChemin = "Prenez le télésiège "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez le télésiège "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("telecabine")){
-				plusCourtChemin = "Prenez la télécabine "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez la télécabine "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("telepherique")){
 				plusCourtChemin = "Prenez le téléphérique "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("noir")){
-				plusCourtChemin = "Prenez la piste noir "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez la piste noir "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("bleu")){
-				plusCourtChemin = "Prenez la piste bleu "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez la piste bleu "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("vert")){
-				plusCourtChemin = "Prenez la piste verte "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez la piste verte "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else if(actuel.getCheminArrivantPere().getType().equals("rouge")){
-				plusCourtChemin = "Prenez la piste rouge "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
+				plusCourtChemin = "Prenez la piste rouge "+actuel.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
 			}
 			else{
 				plusCourtChemin = actuel.getCheminArrivantPere().getNom()+" -> "+plusCourtChemin;
@@ -278,7 +277,6 @@ public class DomaineDeSki {
 	private void _CreationPisteFromString(String in){
 		//Je traite ici la chaine de caractères obtenue en entrée pour en extraire les informations nécessaires
 		//à la création des pistes et sommets du graphe.
-		//TODO: Apprendre à lire le type depuis la DB c'est comme "nom type depart arriver taille"
 		String nom = ""; String depart = ""; String arriver = ""; String type = ""; String StrTaille = ""; int taille = 0;
 		int tres = 0;
 		for(int i = 0; i<in.length(); i++){
@@ -327,9 +325,6 @@ public class DomaineDeSki {
 			taille = Integer.parseInt(StrTaille);
 			linkCheminASommet(new Chemin(nom, type, depart, arriver, taille));
 		}
-		
-		
-//		this.pistes.add(new Chemin(nom, depart, arriver, taille));
 	}
 	
 	public void linkCheminASommet(Chemin aLinker){

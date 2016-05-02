@@ -36,7 +36,8 @@ public class Chemin {
 	public String toString(){
 		String str = new String();
 		str += this.nom +" ";
-		str += this.depart;
+		str += this.depart+" ";
+		str += this.type;
 		str += "-->"+this.arriver+" ";
 		str += "Temps : "+this.taille+" ";
 		return str;

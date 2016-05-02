@@ -28,11 +28,5 @@ public class Algo_Projet {
 		System.out.println(huez.plusCourtChemin_Djikstra(depart, arriver));
 		
 		in.close();
-		
-//		System.out.println(huez.plusCourtChemin_Djikstra("Barbarate", "Barbarate"));
-//		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Villard_Reculas"));
-//		System.out.println(huez.plusCourtChemin_Djikstra("Signal", "Signal"));
-//		System.out.println(huez.plusCourtChemin_Djikstra("Villard_Reculas", "Barbarate"));
-//		System.out.println(huez.toString());
 	}
 }
