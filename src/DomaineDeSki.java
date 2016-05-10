@@ -140,11 +140,14 @@ public class DomaineDeSki {
 		//Remonte la chaine de sommet depuis l'arriver vers le debut.
 		Sommet actuel = this.arriver;
 		if(actuel == null){
+			System.out.println("Erreur actuel est null ");
+			System.out.println("Sortie ...");
 			System.exit(1);
 		}
 		if(actuel.getCheminArrivantPere() == null){
 			System.out.println("Pas de chemin arrivant Pere"+actuel.toString());
-			System.exit(0);
+//			System.exit(0);
+			return "Erreur";
 		}
 		if(actuel.getCheminArrivantPere().getType().equals("teleski")){
 			plusCourtChemin = "Prenez le téléski "+this.arriver.getCheminArrivantPere().getNom() +"\n"+plusCourtChemin;
@@ -324,7 +327,7 @@ public class DomaineDeSki {
 		if(StrTaille != ""){
 			taille = Integer.parseInt(StrTaille);
 			linkCheminASommet(new Chemin(nom, type, depart, arriver, taille));
-		}
+		}	
 	}
 	
 	public void linkCheminASommet(Chemin aLinker){
@@ -373,5 +376,9 @@ public class DomaineDeSki {
 		}
 		
 		return str;
+	}
+	
+	public ArrayList<Sommet> getListeSommets(){
+		return this.sommets;
 	}
 }
